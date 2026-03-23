@@ -21,7 +21,7 @@ func Load() *Config {
 	cfg := &Config{
 		MongoURI:    getEnv("MONGO_URI", "mongodb://devops:w3eL5SnEx245I48f7McN@10.107.20.93:27017/IMZ_USER?directConnection=true&authSource=admin"),
 		MongoDBName: getEnv("MONGO_DB_NAME", "gst-api"),
-		JWTSecret:   getEnv("JWT_SECRET", ""),
+		JWTSecret:   getEnv("JWT_SECRET", "your-super-secret-jwt-key-min-32-chars"),
 		ServerPort:  getEnv("SERVER_PORT", "8520"),
 		GinMode:     getEnv("GIN_MODE", "debug"),
 	}
