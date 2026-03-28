@@ -2,7 +2,6 @@ package repository
 
 import (
 	"context"
-	"log"
 	"time"
 
 	"gst-api/internal/models"
@@ -32,39 +31,6 @@ func New(db *mongo.Database) (*SyncRepository, error) {
 	// 	return nil, err
 	// }
 	return r, nil
-}
-
-// ensureIndexes creates unique indexes on all natural + business keys.
-// Safe to call multiple times (idempotent).
-func (r *SyncRepository) ensureIndexes(ctx context.Context) error {
-	type indexSpec struct {
-		collection string
-		key        string
-	}
-
-	specs := []indexSpec{
-		{ColGSTHierarchy, "gstrangeCode"},
-		{ColGSTHierarchy, "gstHierarchyId"},
-		{ColPremise, "premiseCode"},
-		{ColPremise, "premiseId"},
-		{ColMachine, "machineRegistrationNo"},
-		{ColMachine, "machineId"},
-		{ColOfficer, "officerCode"},
-		{ColOfficer, "officerId"},
-	}
-
-	for _, s := range specs {
-		model := mongo.IndexModel{
-			Keys:    bson.D{{Key: s.key, Value: 1}},
-			Options: options.Index().SetUnique(true).SetName("uq_" + s.key),
-		}
-		_, err := r.db.Collection(s.collection).Indexes().CreateOne(ctx, model)
-		if err != nil && !mongo.IsDuplicateKeyError(err) {
-			// Log warning but don't block startup
-			log.Printf("[REPO] WARNING: index creation skipped for %s.%s: %v", s.collection, s.key, err)
-		}
-	}
-	return nil // always return nil — never fatal
 }
 
 // ---------------------------------------------------------------------------

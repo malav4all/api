@@ -14,22 +14,23 @@ import (
 // Unique key: gstrangeCode
 // GSTHierarchyId: client-facing business ID (provided by client, unique)
 type GSTHierarchy struct {
-	ID                     primitive.ObjectID `bson:"_id,omitempty"            json:"id,omitempty"`
-	GSTHierarchyId         string             `bson:"gstHierarchyId"           json:"gstHierarchyId"           binding:"required"`
-	GSTZoneName            string             `bson:"gstZoneName"              json:"gstZoneName"              binding:"required"`
-	GSTZoneCode            string             `bson:"gstZoneCode"              json:"gstZoneCode"              binding:"required"`
-	GSTCommissionerateName string             `bson:"gstCommissionerateName"   json:"gstCommissionerateName"   binding:"required"`
-	GSTCommissionerateCode string             `bson:"gstCommissionerateCode"   json:"gstCommissionerateCode"   binding:"required"`
-	GSTDivisionCode        string             `bson:"gstDivisionCode"          json:"gstDivisionCode"          binding:"required"`
-	GSTDivisionName        string             `bson:"gstDivisionName"          json:"gstDivisionName"          binding:"required"`
-	GSTRangeName           string             `bson:"gstrangeName"             json:"gstrangeName"             binding:"required"`
-	GSTRangeCode           string             `bson:"gstrangeCode"             json:"gstrangeCode"             binding:"required"`
-	RangeStateName         string             `bson:"rangestateName"           json:"rangestateName"`
-	RangePincode           string             `bson:"rangepincode"             json:"rangepincode"`
-	IsDeleted              bool               `bson:"isDeleted"                json:"isDeleted"`
-	DeletedAt              *time.Time         `bson:"deletedAt,omitempty"      json:"deletedAt,omitempty"`
-	CreatedAt              time.Time          `bson:"createdAt"                json:"createdAt"`
-	UpdatedAt              time.Time          `bson:"updatedAt"                json:"updatedAt"`
+	ID                     primitive.ObjectID `bson:"_id,omitempty"              json:"id,omitempty"`
+	GSTHierarchyId         string             `bson:"gstHierarchyId"             json:"gstHierarchyId"             binding:"required"`
+	GSTZoneName            string             `bson:"gstZoneName"                json:"gstZoneName"                binding:"required"`
+	GSTZoneCode            string             `bson:"gstZoneCode"                json:"gstZoneCode"                binding:"required"`
+	GSTCommissionerateName string             `bson:"gstCommissionerateName"     json:"gstCommissionerateName"     binding:"required"`
+	GSTCommissionerateCode string             `bson:"gstCommissionerateCode"     json:"gstCommissionerateCode"     binding:"required"`
+	GSTDivisionCode        string             `bson:"gstDivisionCode"            json:"gstDivisionCode"`
+	GSTDivisionName        string             `bson:"gstDivisionName"            json:"gstDivisionName"`
+	GSTRangeName           string             `bson:"gstrangeName"               json:"gstrangeName"`
+	GSTRangeCode           string             `bson:"gstrangeCode"               json:"gstrangeCode"`
+	RangeStateName         string             `bson:"rangestateName"             json:"rangestateName"`
+	RangePincode           string             `bson:"rangepincode"               json:"rangepincode"`
+	CenterJurisdictionId   string             `bson:"centerJurisdictionId"       json:"centerJurisdictionId"`
+	IsDeleted              bool               `bson:"isDeleted"                  json:"isDeleted"`
+	DeletedAt              *time.Time         `bson:"deletedAt,omitempty"        json:"deletedAt,omitempty"`
+	CreatedAt              time.Time          `bson:"createdAt"                  json:"createdAt"`
+	UpdatedAt              time.Time          `bson:"updatedAt"                  json:"updatedAt"`
 }
 
 // ---------------------------------------------------------------------------
@@ -41,21 +42,25 @@ type GSTHierarchy struct {
 // PremiseId: client-facing business ID (provided by client, unique)
 // GSTHierarchyId: reference to the parent GST hierarchy record
 type Premise struct {
-	ID               primitive.ObjectID `bson:"_id,omitempty"       json:"id,omitempty"`
-	PremiseId        string             `bson:"premiseId"           json:"premiseId"           binding:"required"`
-	GSTHierarchyId   string             `bson:"gstHierarchyId"      json:"gstHierarchyId"      binding:"required"`
-	ManufacturerName string             `bson:"manufacturerName"    json:"manufacturerName"    binding:"required"`
-	PremiseName      string             `bson:"premiseName"         json:"premiseName"         binding:"required"`
-	PremiseCode      string             `bson:"premiseCode"         json:"premiseCode"         binding:"required"`
-	GSTIN            string             `bson:"gstin"               json:"gstin"               binding:"required"`
-	PremiseAddress   string             `bson:"premiseAddress"      json:"premiseAddress"`
-	PremiseCity      string             `bson:"premiseCity"         json:"premiseCity"`
-	PremisePincode   string             `bson:"premisePincode"      json:"premisePincode"`
-	PremiseLatLong   string             `bson:"premiseLatLong"      json:"premiseLatLong"`
-	IsDeleted        bool               `bson:"isDeleted"           json:"isDeleted"`
-	DeletedAt        *time.Time         `bson:"deletedAt,omitempty" json:"deletedAt,omitempty"`
-	CreatedAt        time.Time          `bson:"createdAt"           json:"createdAt"`
-	UpdatedAt        time.Time          `bson:"updatedAt"           json:"updatedAt"`
+	ID                   primitive.ObjectID `bson:"_id,omitempty"             json:"id,omitempty"`
+	PremiseId            string             `bson:"premiseId"                 json:"premiseId"                 binding:"required"`
+	GSTHierarchyId       string             `bson:"gstHierarchyId"            json:"gstHierarchyId"`
+	ManufacturerName     string             `bson:"manufacturerName"          json:"manufacturerName"          binding:"required"`
+	PremiseName          string             `bson:"premiseName"               json:"premiseName"               binding:"required"`
+	PremiseCode          string             `bson:"premiseCode"               json:"premiseCode"               binding:"required"`
+	GSTIN                string             `bson:"gstin"                     json:"gstin"                     binding:"required"`
+	PremiseAddress       string             `bson:"premiseAddress"            json:"premiseAddress"`
+	PremiseCity          string             `bson:"premiseCity"               json:"premiseCity"`
+	PremisePincode       string             `bson:"premisePincode"            json:"premisePincode"`
+	PremiseLatLong       string             `bson:"premiseLatLong"            json:"premiseLatLong"`
+	RegNo                string             `bson:"regNo"                     json:"regNo"`
+	DataType             string             `bson:"dataType"                  json:"dataType"`
+	JurisdictionId       string             `bson:"jurisdictionId"            json:"jurisdictionId"`
+	CenterJurisdictionId string             `bson:"centerJurisdictionId"      json:"centerJurisdictionId"`
+	IsDeleted            bool               `bson:"isDeleted"                 json:"isDeleted"`
+	DeletedAt            *time.Time         `bson:"deletedAt,omitempty"       json:"deletedAt,omitempty"`
+	CreatedAt            time.Time          `bson:"createdAt"                 json:"createdAt"`
+	UpdatedAt            time.Time          `bson:"updatedAt"                 json:"updatedAt"`
 }
 
 // ---------------------------------------------------------------------------
@@ -72,13 +77,19 @@ type Machine struct {
 	MachineId             string             `bson:"machineId"                  json:"machineId"                  binding:"required"`
 	PremiseId             string             `bson:"premiseId"                  json:"premiseId"                  binding:"required"`
 	GSTHierarchyId        string             `bson:"gstHierarchyId"             json:"gstHierarchyId"             binding:"required"`
-	MachineName           string             `bson:"machineName"                json:"machineName"                binding:"required"`
+	MachineName           string             `bson:"machineName"                json:"machineName"`
 	MachineRegistrationNo string             `bson:"machineRegistrationNo"      json:"machineRegistrationNo"      binding:"required"`
 	MachineType           string             `bson:"machineType"                json:"machineType"`
 	MachineMake           string             `bson:"machineMake"                json:"machineMake"`
 	MachineModel          string             `bson:"machineModel"               json:"machineModel"`
 	MachineSerialNo       string             `bson:"machineSerialNo"            json:"machineSerialNo"`
 	WorkingStatus         string             `bson:"workingStatus"              json:"workingStatus"`
+	Data                  string             `bson:"data"                       json:"data"`
+	RegNo                 string             `bson:"regNo"                      json:"regNo"`
+	TrkFnlRegNo           string             `bson:"trkFnlRegNo"                json:"trkFnlRegNo"`
+	PremiseAddress        string             `bson:"premiseAddress"             json:"premiseAddress"`
+	CenterJurisdictionId  string             `bson:"centerJurisdictionId"       json:"centerJurisdictionId"`
+	MacMfcrName           string             `bson:"macMfcrName"                json:"macMfcrName"`
 	IsDeleted             bool               `bson:"isDeleted"                  json:"isDeleted"`
 	DeletedAt             *time.Time         `bson:"deletedAt,omitempty"        json:"deletedAt,omitempty"`
 	CreatedAt             time.Time          `bson:"createdAt"                  json:"createdAt"`
@@ -94,19 +105,31 @@ type Machine struct {
 // OfficerId: client-facing business ID (provided by client, unique)
 // GSTHierarchyId: reference to the parent GST hierarchy record
 type Officer struct {
-	ID                 primitive.ObjectID `bson:"_id,omitempty"        json:"id,omitempty"`
-	OfficerId          string             `bson:"officerId"            json:"officerId"            binding:"required"`
-	GSTHierarchyId     string             `bson:"gstHierarchyId"       json:"gstHierarchyId"       binding:"required"`
-	OfficerName        string             `bson:"officerName"          json:"officerName"          binding:"required"`
-	OfficerCode        string             `bson:"officerCode"          json:"officerCode"          binding:"required"`
-	OfficerDesignation string             `bson:"officerDesignation"   json:"officerDesignation"`
-	OfficerMobileNo    string             `bson:"officerMobileNo"      json:"officerMobileNo"`
-	OfficerEmail       string             `bson:"officerEmail"         json:"officerEmail"`
-	SSOId              string             `bson:"ssoId"                json:"ssoId"`
-	IsDeleted          bool               `bson:"isDeleted"            json:"isDeleted"`
-	DeletedAt          *time.Time         `bson:"deletedAt,omitempty"  json:"deletedAt,omitempty"`
-	CreatedAt          time.Time          `bson:"createdAt"            json:"createdAt"`
-	UpdatedAt          time.Time          `bson:"updatedAt"            json:"updatedAt"`
+	ID                  primitive.ObjectID `bson:"_id,omitempty"            json:"id,omitempty"`
+	OfficerId           string             `bson:"officerId"                json:"officerId"                binding:"required"`
+	GSTHierarchyId      string             `bson:"gstHierarchyId"           json:"gstHierarchyId"           binding:"required"`
+	OfficerName         string             `bson:"officerName"              json:"officerName"              binding:"required"`
+	OfficerCode         string             `bson:"officerCode"              json:"officerCode"              binding:"required"`
+	OfficerDesignation  string             `bson:"officerDesignation"       json:"officerDesignation"`
+	OfficerMobileNo     string             `bson:"officerMobileNo"          json:"officerMobileNo"`
+	OfficerEmail        string             `bson:"officerEmail"             json:"officerEmail"`
+	SSOId               string             `bson:"ssoId"                    json:"ssoId"`
+	TaxOfficialId       string             `bson:"taxOfficialId"            json:"taxOfficialId"`
+	EmployeeCode        string             `bson:"employeeCode"             json:"employeeCode"`
+	FormationName       string             `bson:"formationName"            json:"formationName"`
+	ZoneName            string             `bson:"zoneName"                 json:"zoneName"`
+	CommissionerateName string             `bson:"commissionerateName"      json:"commissionerateName"`
+	DivisionName        string             `bson:"divisionName"             json:"divisionName"`
+	RangeName           string             `bson:"rangeName"                json:"rangeName"`
+	VerticalName        string             `bson:"verticalName"             json:"verticalName"`
+	IsBase              string             `bson:"isBase"                   json:"isBase"`
+	PermissionSetCode   string             `bson:"permissionSetCode"        json:"permissionSetCode"`
+	PermissionSetDesc   string             `bson:"permissionSetDesc"        json:"permissionSetDesc"`
+	PermissionType      string             `bson:"permissionType"           json:"permissionType"`
+	IsDeleted           bool               `bson:"isDeleted"                json:"isDeleted"`
+	DeletedAt           *time.Time         `bson:"deletedAt,omitempty"      json:"deletedAt,omitempty"`
+	CreatedAt           time.Time          `bson:"createdAt"                json:"createdAt"`
+	UpdatedAt           time.Time          `bson:"updatedAt"                json:"updatedAt"`
 }
 
 // ---------------------------------------------------------------------------
@@ -212,18 +235,23 @@ type UpdateGSTHierarchyRequest struct {
 	GSTRangeCode           string `json:"gstrangeCode"`
 	RangeStateName         string `json:"rangestateName"`
 	RangePincode           string `json:"rangepincode"`
+	CenterJurisdictionId   string `json:"centerJurisdictionId"`
 }
 
 type UpdatePremiseRequest struct {
-	GSTHierarchyId   string `json:"gstHierarchyId"`
-	ManufacturerName string `json:"manufacturerName"`
-	PremiseName      string `json:"premiseName"`
-	PremiseCode      string `json:"premiseCode"`
-	GSTIN            string `json:"gstin"`
-	PremiseAddress   string `json:"premiseAddress"`
-	PremiseCity      string `json:"premiseCity"`
-	PremisePincode   string `json:"premisePincode"`
-	PremiseLatLong   string `json:"premiseLatLong"`
+	GSTHierarchyId       string `json:"gstHierarchyId"`
+	ManufacturerName     string `json:"manufacturerName"`
+	PremiseName          string `json:"premiseName"`
+	PremiseCode          string `json:"premiseCode"`
+	GSTIN                string `json:"gstin"`
+	PremiseAddress       string `json:"premiseAddress"`
+	PremiseCity          string `json:"premiseCity"`
+	PremisePincode       string `json:"premisePincode"`
+	PremiseLatLong       string `json:"premiseLatLong"`
+	RegNo                string `json:"regNo"`
+	DataType             string `json:"dataType"`
+	JurisdictionId       string `json:"jurisdictionId"`
+	CenterJurisdictionId string `json:"centerJurisdictionId"`
 }
 
 type UpdateMachineRequest struct {
@@ -236,14 +264,32 @@ type UpdateMachineRequest struct {
 	MachineModel          string `json:"machineModel"`
 	MachineSerialNo       string `json:"machineSerialNo"`
 	WorkingStatus         string `json:"workingStatus"`
+	Data                  string `json:"data"`
+	RegNo                 string `json:"regNo"`
+	TrkFnlRegNo           string `json:"trkFnlRegNo"`
+	PremiseAddress        string `json:"premiseAddress"`
+	CenterJurisdictionId  string `json:"centerJurisdictionId"`
+	MacMfcrName           string `json:"macMfcrName"`
 }
 
 type UpdateOfficerRequest struct {
-	GSTHierarchyId     string `json:"gstHierarchyId"`
-	OfficerName        string `json:"officerName"`
-	OfficerCode        string `json:"officerCode"`
-	OfficerDesignation string `json:"officerDesignation"`
-	OfficerMobileNo    string `json:"officerMobileNo"`
-	OfficerEmail       string `json:"officerEmail"`
-	SSOId              string `json:"ssoId"`
+	GSTHierarchyId      string `json:"gstHierarchyId"`
+	OfficerName         string `json:"officerName"`
+	OfficerCode         string `json:"officerCode"`
+	OfficerDesignation  string `json:"officerDesignation"`
+	OfficerMobileNo     string `json:"officerMobileNo"`
+	OfficerEmail        string `json:"officerEmail"`
+	SSOId               string `json:"ssoId"`
+	TaxOfficialId       string `json:"taxOfficialId"`
+	EmployeeCode        string `json:"employeeCode"`
+	FormationName       string `json:"formationName"`
+	ZoneName            string `json:"zoneName"`
+	CommissionerateName string `json:"commissionerateName"`
+	DivisionName        string `json:"divisionName"`
+	RangeName           string `json:"rangeName"`
+	VerticalName        string `json:"verticalName"`
+	IsBase              string `json:"isBase"`
+	PermissionSetCode   string `json:"permissionSetCode"`
+	PermissionSetDesc   string `json:"permissionSetDesc"`
+	PermissionType      string `json:"permissionType"`
 }

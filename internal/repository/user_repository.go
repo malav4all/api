@@ -21,9 +21,9 @@ type UserRepository struct {
 // NewUserRepository creates a UserRepository and ensures indexes.
 func NewUserRepository(db *mongo.Database) (*UserRepository, error) {
 	r := &UserRepository{db: db}
-	if err := r.ensureUserIndexes(context.Background()); err != nil {
-		return nil, err
-	}
+	// if err := r.ensureUserIndexes(context.Background()); err != nil {
+	// 	return nil, err
+	// }
 	return r, nil
 }
 
